@@ -1,0 +1,18 @@
+applications:
+  gpu-operator-certified:
+    annotations:
+      argocd.argoproj.io/compare-options: IgnoreExtraneous
+      argocd.argoproj.io/sync-wave: "5"
+    destination:
+      namespace: nvidia-gpu-operator
+    source:
+      path: groups/gpu/overlays/gpu-operator-certified
+
+  nfd-operator:
+    annotations:
+      argocd.argoproj.io/compare-options: IgnoreExtraneous
+      argocd.argoproj.io/sync-wave: "5"
+    destination:
+      namespace: openshift-nfd
+    source:
+      path: groups/gpu/overlays/nfd-operator

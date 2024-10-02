@@ -1,0 +1,18 @@
+---
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: minio
+  namespace: minio-dev
+  labels:
+    app: minio
+spec:
+  host: replace
+  to:
+    kind: Service
+    name: minio-svc
+  port:
+    targetPort: 9090
+  tls:
+    termination: edge
+  wildcardPolicy: None
