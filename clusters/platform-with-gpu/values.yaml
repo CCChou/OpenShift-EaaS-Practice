@@ -65,11 +65,11 @@ applications:
     source:
       path: clusters/platform-with-gpu/overlays/rhods-operator
 
-  rhods-operator-configuration:
+  rhods-configuration:
     annotations:
       argocd.argoproj.io/compare-options: IgnoreExtraneous
       argocd.argoproj.io/sync-wave: "20"
     destination:
       namespace: redhat-ods-applications
     source:
-      path: clusters/platform-with-gpu/overlays/rhods-operator-configuration
+      path: clusters/platform-with-gpu/overlays/rhods-configuration
