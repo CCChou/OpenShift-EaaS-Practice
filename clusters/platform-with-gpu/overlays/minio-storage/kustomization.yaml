@@ -8,7 +8,7 @@ patches:
   - patch: |-
       - op: replace
         path: /spec/host
-        value: "https://minio-minio-dev.apps.${CLUSTER_BASE_DOMAIN}"
+        value: "minio-minio-dev.apps.${CLUSTER_BASE_DOMAIN}"
     target:
       kind: Route
       name: minio
