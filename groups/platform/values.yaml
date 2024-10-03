@@ -36,7 +36,7 @@ applications:
     destination:
       namespace: openshift-operators
     source:
-      path: groups/gpu/overlays/openshift-pipelines-operator
+      path: groups/platform/overlays/openshift-pipelines-operator
 
   openshift-servicemesh:
     annotations:
@@ -45,7 +45,7 @@ applications:
     destination:
       namespace: openshift-operators
     source:
-      path: groups/gpu/overlays/openshift-servicemesh
+      path: groups/platform/overlays/openshift-servicemesh
 
   serverless-operator:
     annotations:
@@ -54,4 +54,4 @@ applications:
     destination:
       namespace: openshift-serverless
     source:
-      path: groups/gpu/overlays/serverless-operator
+      path: groups/platform/overlays/serverless-operator
