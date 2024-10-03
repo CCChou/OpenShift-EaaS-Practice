@@ -29,7 +29,7 @@ oc apply -f .bootstrap/cluster-rolebinding.yaml
 
 envsubst < .bootstrap/argocd.yaml | oc apply -f -
 echo -n "Waiting for argocd server ready in openshift-gitops namespace"
-while [ "true" != "$(oc get pod -l app.kubernetes.io/name=openshift-gitops-server -n openshift-gitops -ojsonpath='{..items[0].status.containerStatuses[0].ready}')" ]; do
+while [ "Available" != "$(oc get argocd openshift-gitops -n openshift-gitops -ojsonpath='{.status.phase}')" ]; do
     echo -n '.'
     sleep 3
 done
