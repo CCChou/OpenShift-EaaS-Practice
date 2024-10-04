@@ -6,5 +6,4 @@ namespace: redhat-ods-applications
 
 resources:
   - ./datasciencecluster.yaml
-  - ./dsc-init.yaml
   - ./namespace.yaml
