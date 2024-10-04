@@ -1,0 +1,23 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - ../../../../components/minio-storage/
+
+patches:
+  - patch: |-
+      - op: replace
+        path: /spec/host
+        value: "minio-minio-dev.apps.${CLUSTER_BASE_DOMAIN}"
+    target:
+      kind: Route
+      name: minio
+      namespace: minio-dev
+  - patch: |-
+      - op: replace
+        path: /spec/href
+        value: "https://minio-minio-dev.apps.${CLUSTER_BASE_DOMAIN}"
+    target:
+      kind: ConsoleLink
+      name: miniolink
+      namespace: minio-dev
