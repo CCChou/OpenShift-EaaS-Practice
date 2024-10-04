@@ -50,7 +50,7 @@ applications:
     destination:
       namespace: minio-dev
     source:
-      path: clusters/platform-with-gpu/overlays/minio-storage
+      path: groups/all/overlays/minio-storage
 
   loki-operator:
     annotations:
@@ -59,7 +59,7 @@ applications:
     destination:
       namespace: openshift-operators-redhat
     source:
-      path: clusters/platform-with-gpu/overlays/loki-operator
+      path: groups/all/overlays/loki-operator
   
   openshift-logging-operator:
     annotations:
@@ -68,7 +68,7 @@ applications:
     destination:
       namespace: openshift-logging
     source:
-      path: clusters/platform-with-gpu/overlays/openshift-logging-operator
+      path: groups/all/overlays/openshift-logging-operator
   
   loki-minio-job:
     annotations:
@@ -77,7 +77,7 @@ applications:
     destination:
       namespace: openshift-logging
     source:
-      path: clusters/platform-with-gpu/overlays/loki-minio-job
+      path: groups/all/overlays/loki-minio-job
 
   loki-configuration:
     annotations:
@@ -86,7 +86,7 @@ applications:
     destination:
       namespace: openshift-logging
     source:
-      path: clusters/platform-with-gpu/overlays/loki-configuration
+      path: groups/all/overlays/loki-configuration
   
   openshift-logging-configuration:
     annotations:
@@ -95,4 +95,4 @@ applications:
     destination:
       namespace: openshift-logging
     source:
-      path: clusters/platform-with-gpu/overlays/openshift-logging-configuration
+      path: groups/all/overlays/openshift-logging-configuration
