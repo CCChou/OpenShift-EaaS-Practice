@@ -41,3 +41,58 @@ projects:
       clusterResourceWhitelist:
       - group: '*'
         kind: '*'
+
+applications:
+  minio-storage:
+    annotations:
+      argocd.argoproj.io/compare-options: IgnoreExtraneous
+      argocd.argoproj.io/sync-wave: "5"
+    destination:
+      namespace: minio-dev
+    source:
+      path: clusters/platform-with-gpu/overlays/minio-storage
+
+  loki-operator:
+    annotations:
+      argocd.argoproj.io/compare-options: IgnoreExtraneous
+      argocd.argoproj.io/sync-wave: "5"
+    destination:
+      namespace: openshift-operators-redhat
+    source:
+      path: clusters/platform-with-gpu/overlays/loki-operator
+  
+  openshift-logging-operator:
+    annotations:
+      argocd.argoproj.io/compare-options: IgnoreExtraneous
+      argocd.argoproj.io/sync-wave: "5"
+    destination:
+      namespace: openshift-logging
+    source:
+      path: clusters/platform-with-gpu/overlays/openshift-logging-operator
+  
+  loki-minio-job:
+    annotations:
+      argocd.argoproj.io/compare-options: IgnoreExtraneous
+      argocd.argoproj.io/sync-wave: "10"
+    destination:
+      namespace: openshift-logging
+    source:
+      path: clusters/platform-with-gpu/overlays/loki-minio-job
+
+  loki-configuration:
+    annotations:
+      argocd.argoproj.io/compare-options: IgnoreExtraneous
+      argocd.argoproj.io/sync-wave: "15"
+    destination:
+      namespace: openshift-logging
+    source:
+      path: clusters/platform-with-gpu/overlays/loki-configuration
+  
+  openshift-logging-configuration:
+    annotations:
+      argocd.argoproj.io/compare-options: IgnoreExtraneous
+      argocd.argoproj.io/sync-wave: "20"
+    destination:
+      namespace: openshift-logging
+    source:
+      path: clusters/platform-with-gpu/overlays/openshift-logging-configuration
