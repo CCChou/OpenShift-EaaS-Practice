@@ -4,6 +4,5 @@ kind: Kustomization
 
 components:
   - ../../groups/all
-  - ../../groups/platform
 
 patches: []
