@@ -1,6 +1,6 @@
 # /bin/bash
 
-if [ "$#" -eq 4 ]; then
+if [ "$#" -ne 4 ]; then
     echo "usage: ./bootstrap.sh [your gitops repo] [your cluster name] [admin username] [pin]"
     exit 1
 fi
