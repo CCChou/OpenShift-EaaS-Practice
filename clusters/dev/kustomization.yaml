@@ -3,6 +3,6 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 components:
-  - https://github.com/CCChou/OpenShift-EaaS-Practice/groups/all?ref=dev
+  - https://github.com/CCChou/OpenShift-EaaS-Practice//groups/all?ref=dev
 
 patches: []
