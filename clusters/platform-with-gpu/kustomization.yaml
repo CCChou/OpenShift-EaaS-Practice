@@ -4,6 +4,7 @@ kind: Kustomization
 
 components:
   - ../../groups/all
+  - ../../groups/platform
   - ../../groups/gpu
 
 helmGlobals:
