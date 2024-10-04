@@ -1,6 +1,6 @@
 # /bin/bash
 
-if [ "$#" -gt 5 ]; then
+if [ "$#" -eq 4 ]; then
     echo "usage: ./bootstrap.sh [your gitops repo] [your cluster name] [admin username] [pin]"
     exit 1
 fi
@@ -10,12 +10,12 @@ unset $2
 unset $3
 unset $4
 
-export gitops_repo=$(echo "${1:-https://github.com/CCChou/OpenShift-EaaS-Practice.git}") #<your newly created repo>
-export cluster_name=$(echo "${2:-hub}")	 #<your cluster name, default hub>
+export gitops_repo=$1 #<your newly created repo>
+export cluster_name=$2	 #<your cluster name, default hub>
 export cluster_base_domain=$(oc get ingress.config.openshift.io cluster --template={{.spec.domain}} | sed -e "s/^apps.//")
 export platform_base_domain=${cluster_base_domain#*.}
-export admin_username=$(echo "${3:-admin}")  #<your admin username, default admin>
-export pin=$(echo "${4:-HEAD}")
+export admin_username=$3  #<your admin username, default admin>
+export pin=$4
 
 envsubst < .bootstrap/group.yaml | oc apply -f -
 
