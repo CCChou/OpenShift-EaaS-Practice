@@ -7,3 +7,4 @@ namespace: openshift-operators-redhat
 resources:
   - namespace.yaml
   - subscription.yaml
+  - operator-group.yaml
