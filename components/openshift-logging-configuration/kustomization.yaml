@@ -4,4 +4,4 @@ kind: Kustomization
 
 resources:
   - cluster-logging.yaml
-  - cluster-log-fowarder.yaml
+  - cluster-log-forwarder.yaml
