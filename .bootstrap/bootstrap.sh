@@ -1,10 +1,5 @@
 # /bin/bash
-
-<<<<<<< HEAD
 if [ "$#" -ne 4 ]; then
-=======
-if [ "$#" -eq 4 ]; then
->>>>>>> addb460 (Remove default value)
     echo "usage: ./bootstrap.sh [your gitops repo] [your cluster name] [admin username] [pin]"
     exit 1
 fi
