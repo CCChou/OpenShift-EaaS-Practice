@@ -1,6 +1,10 @@
 # /bin/bash
 
+<<<<<<< HEAD
 if [ "$#" -ne 4 ]; then
+=======
+if [ "$#" -eq 4 ]; then
+>>>>>>> addb460 (Remove default value)
     echo "usage: ./bootstrap.sh [your gitops repo] [your cluster name] [admin username] [pin]"
     exit 1
 fi
@@ -16,7 +20,7 @@ export cluster_base_domain=$(oc get ingress.config.openshift.io cluster --templa
 export platform_base_domain=${cluster_base_domain#*.}
 export admin_username=$3  #<your admin username, default admin>
 export pin=$4 #<your target revision>
-
+.bootstrap/bootstrap.sh
 envsubst < .bootstrap/group.yaml | oc apply -f -
 
 oc apply -f .bootstrap/subscription.yaml
