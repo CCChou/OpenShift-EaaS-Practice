@@ -38,15 +38,6 @@ applications:
     source:
       path: clusters/platform-with-gpu/overlays/gpu-operator-certified-configuration
 
-  minio-storage:
-    annotations:
-      argocd.argoproj.io/compare-options: IgnoreExtraneous
-      argocd.argoproj.io/sync-wave: "15"
-    destination:
-      namespace: minio-dev
-    source:
-      path: clusters/platform-with-gpu/overlays/minio-storage
-
   nfd-configuration:
     annotations:
       argocd.argoproj.io/compare-options: IgnoreExtraneous
