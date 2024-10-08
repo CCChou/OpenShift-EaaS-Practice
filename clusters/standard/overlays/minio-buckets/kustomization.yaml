@@ -7,5 +7,5 @@ helmGlobals:
 helmCharts:
   - name: minio-buckets
     releaseName: dev-minio-buckets
-    namespace: minio-dev
+    namespace: default
     valuesFile: values.yaml
