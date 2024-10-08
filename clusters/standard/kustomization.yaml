@@ -5,6 +5,9 @@ kind: Kustomization
 components:
   - ../../groups/all
 
+helmGlobals:
+  chartHome: ../../.helm/charts
+
 helmCharts:
   - name: argocd-app-of-app
     valuesFile: values.yaml
