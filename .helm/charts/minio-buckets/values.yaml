@@ -1,0 +1,4 @@
+# Default Value for minio connection
+minioEndpoint: "http://minio-svc.minio-dev.svc:9000"
+minioUser: "minioadmin"
+minioPassword: "minioadmin"
