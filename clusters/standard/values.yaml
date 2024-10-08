@@ -34,7 +34,7 @@ applications:
       argocd.argoproj.io/compare-options: IgnoreExtraneous
       argocd.argoproj.io/sync-wave: "10"
     destination:
-      namespace: minio-dev
+      namespace: default
     source:
       path: clusters/standard/overlays/minio-buckets
 
