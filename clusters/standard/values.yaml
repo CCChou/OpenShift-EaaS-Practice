@@ -28,44 +28,30 @@ default:
         factor: 2 # a factor to multiply the base duration after each failed retry
         maxDuration: 10m # the maximum amount of time allowed for the backoff strategy
 
-projects:
-  cluster-config:
-    description: Project for overall cluster configuration
-    namespace: openshift-gitops
-    sourceRepos:
-      - https://github.com/CCChou/OpenShift-EaaS-Practice
-    destinations: |
-      - namespace: '*'
-        server: https://kubernetes.default.svc
-    extraFields: |
-      clusterResourceWhitelist:
-      - group: '*'
-        kind: '*'
-
 applications:
-  minio-storage:
+  minio-buckets:
     annotations:
       argocd.argoproj.io/compare-options: IgnoreExtraneous
-      argocd.argoproj.io/sync-wave: "5"
+      argocd.argoproj.io/sync-wave: "10"
     destination:
       namespace: minio-dev
     source:
-      path: groups/all/overlays/minio-storage
+      path: clusters/dev/overlays/minio-buckets
 
-  loki-operator:
+  loki-configuration:
     annotations:
       argocd.argoproj.io/compare-options: IgnoreExtraneous
-      argocd.argoproj.io/sync-wave: "5"
-    destination:
-      namespace: openshift-operators-redhat
-    source:
-      path: groups/all/overlays/loki-operator
-  
-  openshift-logging-operator:
-    annotations:
-      argocd.argoproj.io/compare-options: IgnoreExtraneous
-      argocd.argoproj.io/sync-wave: "5"
+      argocd.argoproj.io/sync-wave: "15"
     destination:
       namespace: openshift-logging
     source:
-      path: groups/all/overlays/openshift-logging-operator
+      path: clusters/dev/overlays//loki-configuration
+  
+  openshift-logging-configuration:
+    annotations:
+      argocd.argoproj.io/compare-options: IgnoreExtraneous
+      argocd.argoproj.io/sync-wave: "20"
+    destination:
+      namespace: openshift-logging
+    source:
+      path: clusters/dev/overlays/openshift-logging-configuration
