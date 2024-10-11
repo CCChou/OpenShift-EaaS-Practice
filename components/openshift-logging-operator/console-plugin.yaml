@@ -1,0 +1,28 @@
+apiVersion: console.openshift.io/v1
+kind: ConsolePlugin
+metadata:
+  labels:
+    app: logging-view-plugin
+    app.kubernetes.io/created-by: openshift-logging_instance
+    app.kubernetes.io/name: logging-view-plugin
+  name: logging-view-plugin
+spec:
+  backend:
+    service:
+      basePath: /
+      name: logging-view-plugin
+      namespace: openshift-logging
+      port: 9443
+    type: Service
+  displayName: Logging Console Plugin
+  i18n:
+    loadType: ""
+  proxy:
+  - alias: backend
+    authorization: UserToken
+    endpoint:
+      service:
+        name: logging-loki-gateway-http
+        namespace: openshift-logging
+        port: 8080
+      type: Service

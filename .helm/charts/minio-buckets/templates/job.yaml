@@ -1,0 +1,55 @@
+{{- range $key,$val := .Values.buckets }}
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: create-minio-bucket-{{ $key }}
+spec:
+  backoffLimit: 4
+  template:
+    spec:
+      serviceAccount: minio-manage
+      serviceAccountName: minio-manage
+      initContainers:
+      - name: wait-for-minio
+        image: quay.io/rhtw/tools:1.2.0
+        imagePullPolicy: IfNotPresent
+        command: ["/bin/bash"]
+        args:
+        - -ec
+        - |-
+          echo -n "Waiting for minio pod ready in minio-dev namespace"
+          while [ "true" != "$(oc get pod -n minio-dev -l app=minio -ojsonpath='{.items[0].status.containerStatuses[0].ready}')" ]; do
+              echo -n '.'
+              sleep 1
+          done
+          echo "Minio pod is running in minio-dev namespace"
+      containers:
+      - name: add-buckets-and-users
+        image: quay.io/rhtw/tools:1.2.0
+        imagePullPolicy: IfNotPresent
+        command: ["/bin/bash"]
+        args:
+        - -ec
+        - |-
+          mc alias set minio-dev $AWS_S3_ENDPOINT $AWS_ACCESS_KEY_ID $AWS_SECRET_ACCESS_KEY
+          mc mb minio-dev/$BUCKET
+          mc admin user add minio-dev $USER $PASSWORD
+          mc admin policy attach minio-dev readwrite --user $USER
+        env:
+        - name: MC_CONFIG_DIR
+          value: "/tmp"
+        - name: AWS_S3_ENDPOINT
+          value: {{ $.Values.minioEndpoint }}
+        - name: AWS_ACCESS_KEY_ID
+          value:  {{ $.Values.minioUser }}
+        - name: AWS_SECRET_ACCESS_KEY
+          value: {{ $.Values.minioPassword }}
+        - name: BUCKET
+          value: {{ $val.bucketName }}
+        - name: USER
+          value: {{ $val.user }}
+        - name: PASSWORD
+          value: {{ $val.password }}
+      restartPolicy: Never
+{{- end }}
