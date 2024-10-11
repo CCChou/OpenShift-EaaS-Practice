@@ -12,7 +12,7 @@ default:
       server: https://kubernetes.default.svc
     source:
       repoURL: https://github.com/CCChou/OpenShift-EaaS-Practice.git
-      targetRevision: dev
+      targetRevision: HEAD
     syncOptions:
       - ApplyOutOfSyncOnly=true
       - PrunePropagationPolicy=foreground
