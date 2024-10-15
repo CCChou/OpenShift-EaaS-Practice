@@ -33,9 +33,9 @@ spec:
         args:
         - -ec
         - |-
-          mc alias set minio-dev $AWS_S3_ENDPOINT $AWS_ACCESS_KEY_ID $AWS_SECRET_ACCESS_KEY
+          mc alias set minio-dev $AWS_S3_ENDPOINT $AWS_ACCESS_KEY_ID $AWS_SECRET_ACCESS_KEY;
 
-          mc ls minio-dev/$BUCKET
+          mc ls minio-dev/$BUCKET;
 
           if [ $? -eq 0 ]; then
               echo $BUCKET " is exist"
