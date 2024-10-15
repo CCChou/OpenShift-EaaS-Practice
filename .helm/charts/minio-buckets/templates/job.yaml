@@ -34,13 +34,15 @@ spec:
         - |-
           mc alias set minio-dev $AWS_S3_ENDPOINT $AWS_ACCESS_KEY_ID $AWS_SECRET_ACCESS_KEY
 
-          while [ "$(mc ls minio-dev/$BUCKET)" = "true" ]; do
-              exit 1
-          done
+          mc ls minio-dev/$BUCKET
 
-          mc mb minio-dev/$BUCKET
-          mc admin user add minio-dev $USER $PASSWORD
-          mc admin policy attach minio-dev readwrite --user $USER
+          if [ $? -eq 0 ]; then
+              exit 1
+          else
+              mc mb minio-dev/$BUCKET
+              mc admin user add minio-dev $USER $PASSWORD
+              mc admin policy attach minio-dev readwrite --user $USER
+          fi
         env:
         - name: MC_CONFIG_DIR
           value: "/tmp"
