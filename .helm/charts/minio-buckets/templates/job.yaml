@@ -37,6 +37,7 @@ spec:
           mc ls minio-dev/$BUCKET
 
           if [ $? -eq 0 ]; then
+              echo $BUCKET " is exist"
               exit 1
           else
               mc mb minio-dev/$BUCKET
