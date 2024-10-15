@@ -4,6 +4,9 @@ kind: Kustomization
 resources:
   - ../../../../components/loki-configuration/
 
+generatorOptions:
+  disableNameSuffixHash: true
+
 secretGenerator:
   - name: logging-loki-s3
     type: Opaque

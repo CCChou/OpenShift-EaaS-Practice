@@ -4,6 +4,9 @@ kind: Kustomization
 resources:
   - ../../../../components/tempo-configuration/
 
+generatorOptions:
+  disableNameSuffixHash: true
+
 secretGenerator:
   - name: tempo-s3
     type: Opaque
