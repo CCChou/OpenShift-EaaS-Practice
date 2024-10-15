@@ -38,7 +38,7 @@ spec:
 
           if [ $? -eq 0 ]; then
               echo $BUCKET " is exist"
-              exit 1
+              exit 0
           else
               mc mb minio-dev/$BUCKET
               mc admin user add minio-dev $USER $PASSWORD
