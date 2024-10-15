@@ -1,4 +1,5 @@
 {{- range $key,$val := .Values.buckets }}
+{{- if (hasKey $val "enabled" | ternary $val.enabled $.Values.default.minio.enabled) }}
 ---
 apiVersion: batch/v1
 kind: Job
@@ -48,11 +49,11 @@ spec:
         - name: MC_CONFIG_DIR
           value: "/tmp"
         - name: AWS_S3_ENDPOINT
-          value: {{ $.Values.minioEndpoint }}
+          value: {{ ($val.minioEndpoint) | default $.Values.default.minio.minioEndpoint | required (printf "No minioEndpoint specified for %s" $key ) }}
         - name: AWS_ACCESS_KEY_ID
-          value:  {{ $.Values.minioUser }}
+          value:  {{ ($val.minioUser) | default $.Values.default.minio.minioUser | required (printf "No minioUser specified for %s" $key ) }}
         - name: AWS_SECRET_ACCESS_KEY
-          value: {{ $.Values.minioPassword }}
+          value: {{ ($val.minioPassword) | default $.Values.default.minio.minioPassword | required (printf "No minioUser specified for %s" $key ) }}
         - name: BUCKET
           value: {{ $val.bucketName }}
         - name: USER
@@ -60,4 +61,5 @@ spec:
         - name: PASSWORD
           value: {{ $val.password }}
       restartPolicy: Never
+{{- end }}
 {{- end }}
