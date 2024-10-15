@@ -2,14 +2,14 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-  - ../../../../components/loki-configuration/
+  - ../../../../components/tempo-configuration/
 
 secretGenerator:
-  - name: logging-loki-s3
+  - name: tempo-s3
     type: Opaque
     literals:
-      - access_key_id=loki
+      - access_key_id=tempo
       - access_key_secret=openshift4!
-      - bucketnames=loki
+      - bucketnames=tempo
       - endpoint=http://minio-svc.minio-dev.svc:9000
       - region=us-east-1

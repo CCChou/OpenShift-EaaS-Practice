@@ -33,6 +33,11 @@ spec:
         - -ec
         - |-
           mc alias set minio-dev $AWS_S3_ENDPOINT $AWS_ACCESS_KEY_ID $AWS_SECRET_ACCESS_KEY
+
+          while [ mc ls minio-dev/$BUCKET ]; then
+              exit 1
+          done
+
           mc mb minio-dev/$BUCKET
           mc admin user add minio-dev $USER $PASSWORD
           mc admin policy attach minio-dev readwrite --user $USER

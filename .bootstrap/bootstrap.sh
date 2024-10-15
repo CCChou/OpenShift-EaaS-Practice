@@ -10,7 +10,7 @@ unset $3
 unset $4
 
 export gitops_repo=$1 #<your newly created repo>
-export cluster_name=$2	 #<your cluster name, default hub>
+export cluster_name=$2 #<your cluster name, default hub>
 export cluster_base_domain=$(oc get ingress.config.openshift.io cluster --template={{.spec.domain}} | sed -e "s/^apps.//")
 export platform_base_domain=${cluster_base_domain#*.}
 export admin_username=$3  #<your admin username, default admin>
@@ -22,7 +22,7 @@ oc apply -f .bootstrap/subscription.yaml
 echo -n "Waiting for openshift-gitops operators ready in openshift-operators namespace"
 while [ "true" != "$(oc get pod -l control-plane=gitops-operator -n openshift-operators -ojsonpath='{.items[0].status.containerStatuses[0].ready}')" ]; do
     echo -n '.'
-    sleep 3
+    sleep 1
 done
 echo "openshift-gitops is ready"
 

@@ -46,7 +46,7 @@ applications:
       namespace: openshift-logging
     source:
       path: clusters/standard/overlays/loki-configuration
-  
+
   openshift-logging-configuration:
     annotations:
       argocd.argoproj.io/compare-options: IgnoreExtraneous
@@ -55,3 +55,21 @@ applications:
       namespace: openshift-logging
     source:
       path: clusters/standard/overlays/openshift-logging-configuration
+
+  tempo-configuration:
+    annotations:
+      argocd.argoproj.io/compare-options: IgnoreExtraneous
+      argocd.argoproj.io/sync-wave: "15"
+    destination:
+      namespace: openshift-tempo-operator
+    source:
+      path: clusters/standard/overlays/tempo-configuration
+
+  opentelemetry-configuration:
+    annotations:
+      argocd.argoproj.io/compare-options: IgnoreExtraneous
+      argocd.argoproj.io/sync-wave: "20"
+    destination:
+      namespace: openshift-opentelemetry-operator
+    source:
+      path: clusters/standard/overlays/opentelemetry-configuration

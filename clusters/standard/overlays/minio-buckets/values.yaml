@@ -7,3 +7,7 @@ buckets:
     bucketName: "loki"
     user: "loki"
     password: "openshift4!"
+  tempo:
+    bucketName: "tempo"
+    user: "tempo"
+    password: "openshift4!"

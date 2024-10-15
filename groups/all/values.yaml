@@ -60,7 +60,7 @@ applications:
       namespace: openshift-operators-redhat
     source:
       path: groups/all/overlays/loki-operator
-  
+
   openshift-logging-operator:
     annotations:
       argocd.argoproj.io/compare-options: IgnoreExtraneous
@@ -69,3 +69,21 @@ applications:
       namespace: openshift-logging
     source:
       path: groups/all/overlays/openshift-logging-operator
+
+  redhat-build-of-opentelemetry:
+    annotations:
+      argocd.argoproj.io/compare-options: IgnoreExtraneous
+      argocd.argoproj.io/sync-wave: "5"
+    destination:
+      namespace: openshift-opentelemetry-operator
+    source:
+      path: groups/all/overlays/redhat-build-of-opentelemetry
+
+  tempo-operator:
+    annotations:
+      argocd.argoproj.io/compare-options: IgnoreExtraneous
+      argocd.argoproj.io/sync-wave: "5"
+    destination:
+      namespace: openshift-tempo-operator
+    source:
+      path: groups/all/overlays/tempo-operator
