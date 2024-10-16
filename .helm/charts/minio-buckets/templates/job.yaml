@@ -35,10 +35,7 @@ spec:
         - |-
           mc alias set minio-dev $AWS_S3_ENDPOINT $AWS_ACCESS_KEY_ID $AWS_SECRET_ACCESS_KEY;
 
-          list="$(mc ls minio-dev | awk '{print $3}' | sed 's/.$//')"
-          item=$BUCKET
-
-          if [ contains "$list" "$item" ]; then
+          if [ -n "$(mc ls test|awk '$5 == $BUCKET"/" {print $5}')" ]; then
               echo $BUCKET " is exist"
               exit 0
           else
