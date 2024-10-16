@@ -35,7 +35,7 @@ spec:
         - |-
           mc alias set minio-dev $AWS_S3_ENDPOINT $AWS_ACCESS_KEY_ID $AWS_SECRET_ACCESS_KEY;
 
-          export bucket_test=$(mc ls minio-dev | awk '$5 == $BUCKET"/" {print $5}')
+          export bucket_test=$(mc ls minio-dev | awk '$5 == "loki/" {print $5}')
           echo $bucket_test
 
           if [ -n $bucket_test ]; then
