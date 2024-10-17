@@ -13,6 +13,5 @@ secretGenerator:
     literals:
       - access_key_id=tempo
       - access_key_secret=openshift4!
-      - bucketnames=tempo
+      - bucket=tempo
       - endpoint=http://minio-svc.minio-dev.svc:9000
-      - region=us-east-1
