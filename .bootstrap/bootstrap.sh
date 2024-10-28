@@ -20,6 +20,9 @@ envsubst < .bootstrap/group.yaml | oc apply -f -
 
 oc apply -f .bootstrap/subscription.yaml
 echo -n "Waiting for openshift-gitops operators ready in openshift-operators namespace"
+
+sleep 5
+
 while [ "true" != "$(oc get pod -l control-plane=gitops-operator -n openshift-operators -ojsonpath='{.items[0].status.containerStatuses[0].ready}')" ]; do
     echo -n '.'
     sleep 1
