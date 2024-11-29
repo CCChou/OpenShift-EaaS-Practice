@@ -1,0 +1,18 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - ../../../../components/loki-configuration/
+
+generatorOptions:
+  disableNameSuffixHash: true
+
+secretGenerator:
+  - name: logging-loki-s3
+    type: Opaque
+    literals:
+      - access_key_id=loki
+      - access_key_secret=openshift4!
+      - bucketnames=loki
+      - endpoint=http://minio-svc.minio-dev.svc:9000
+      - region=us-east-1
