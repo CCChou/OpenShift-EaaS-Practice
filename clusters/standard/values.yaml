@@ -46,6 +46,15 @@ applications:
       namespace: openshift-logging
     source:
       path: clusters/standard/overlays/loki-configuration
+  
+  cluster-observability-configuration:
+    annotations:
+      argocd.argoproj.io/compare-options: IgnoreExtraneous
+      argocd.argoproj.io/sync-wave: "20"
+    destination:
+      namespace: openshift-logging
+    source:
+      path: clusters/standard/overlays/cluster-observability-configuration
 
   openshift-logging-configuration:
     annotations:

@@ -8,7 +8,7 @@ patches:
   - patch: |-
       - op: replace
         path: /spec/channel
-        value: 'stable-5.9'
+        value: 'stable-6.1'
     target:
       group: operators.coreos.com
       kind: Subscription

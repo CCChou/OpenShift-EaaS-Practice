@@ -61,6 +61,15 @@ applications:
     source:
       path: groups/all/overlays/loki-operator
 
+  cluster-observability-operator:
+    annotations:
+      argocd.argoproj.io/compare-options: IgnoreExtraneous
+      argocd.argoproj.io/sync-wave: "5"
+    destination:
+      namespace: openshift-operators
+    source:
+      path: groups/all/overlays/cluster-observability-operator
+
   openshift-logging-operator:
     annotations:
       argocd.argoproj.io/compare-options: IgnoreExtraneous
