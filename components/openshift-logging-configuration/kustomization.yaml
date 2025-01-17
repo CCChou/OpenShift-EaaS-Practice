@@ -4,3 +4,5 @@ kind: Kustomization
 
 resources:
   - cluster-log-forwarder.yaml
+  - cluster-role-binding.yaml
+  - serviceaccount.yaml
