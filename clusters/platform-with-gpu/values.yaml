@@ -36,7 +36,7 @@ applications:
     destination:
       namespace: default
     source:
-      path: clusters/standard/overlays/minio-buckets
+      path: clusters/platform-with-gpu/overlays/minio-buckets
 
   loki-configuration:
     annotations:
@@ -45,7 +45,16 @@ applications:
     destination:
       namespace: openshift-logging
     source:
-      path: clusters/standard/overlays/loki-configuration
+      path: clusters/platform-with-gpu/overlays/loki-configuration
+    
+  cluster-observability-configuration:
+    annotations:
+      argocd.argoproj.io/compare-options: IgnoreExtraneous
+      argocd.argoproj.io/sync-wave: "20"
+    destination:
+      namespace: openshift-logging
+    source:
+      path: clusters/platform-with-gpu/overlays/cluster-observability-configuration
 
   openshift-logging-configuration:
     annotations:
@@ -54,7 +63,7 @@ applications:
     destination:
       namespace: openshift-logging
     source:
-      path: clusters/standard/overlays/openshift-logging-configuration
+      path: clusters/platform-with-gpu/overlays/openshift-logging-configuration
 
   tempo-configuration:
     annotations:
@@ -63,7 +72,7 @@ applications:
     destination:
       namespace: openshift-tempo-operator
     source:
-      path: clusters/standard/overlays/tempo-configuration
+      path: clusters/platform-with-gpu/overlays/tempo-configuration
 
   opentelemetry-configuration:
     annotations:
@@ -72,7 +81,8 @@ applications:
     destination:
       namespace: openshift-opentelemetry-operator
     source:
-      path: clusters/standard/overlays/opentelemetry-configuration
+      path: clusters/platform-with-gpu/overlays/opentelemetry-configuration
+
   gpu-operator-certified-configuration:
     annotations:
       argocd.argoproj.io/compare-options: IgnoreExtraneous
