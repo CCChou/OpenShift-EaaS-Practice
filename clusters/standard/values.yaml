@@ -50,7 +50,7 @@ applications:
   cluster-observability-configuration:
     annotations:
       argocd.argoproj.io/compare-options: IgnoreExtraneous
-      argocd.argoproj.io/sync-wave: "15"
+      argocd.argoproj.io/sync-wave: "20"
     destination:
       namespace: openshift-logging
     source:
@@ -59,7 +59,7 @@ applications:
   openshift-logging-configuration:
     annotations:
       argocd.argoproj.io/compare-options: IgnoreExtraneous
-      argocd.argoproj.io/sync-wave: "15"
+      argocd.argoproj.io/sync-wave: "20"
     destination:
       namespace: openshift-logging
     source:

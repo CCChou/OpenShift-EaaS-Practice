@@ -8,8 +8,6 @@ resources:
   - namespace.yaml
   - operator-group.yaml
   - subscription.yaml
-  - console-plugin-job.yaml
-  - console-plugin.yaml
 
 generatorOptions:
   disableNameSuffixHash: true
