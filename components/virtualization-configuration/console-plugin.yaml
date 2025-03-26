@@ -1,0 +1,29 @@
+apiVersion: console.openshift.io/v1
+kind: ConsolePlugin
+metadata:
+  labels:
+    app: kubevirt-hyperconverged
+    app.kubernetes.io/component: kubevirt-console-plugin
+    app.kubernetes.io/managed-by: hco-operator
+    app.kubernetes.io/part-of: hyperconverged-cluster
+  name: kubevirt-plugin
+spec:
+  backend:
+    service:
+      basePath: /
+      name: kubevirt-console-plugin-service
+      namespace: openshift-cnv
+      port: 9443
+    type: Service
+  displayName: Kubevirt Console Plugin
+  i18n:
+    loadType: ""
+  proxy:
+    - alias: kubevirt-apiserver-proxy
+      authorization: UserToken
+      endpoint:
+        service:
+          name: kubevirt-apiserver-proxy-service
+          namespace: openshift-cnv
+          port: 8080
+        type: Service

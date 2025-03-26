@@ -1,0 +1,16 @@
+default:
+  minio:
+    enabled: true
+    minioEndpoint: "http://minio-svc.minio-dev.svc:9000"
+    minioUser: "minioadmin"
+    minioPassword: "minioadmin"
+
+buckets:
+  loki:
+    bucketName: "loki"
+    user: "loki"
+    password: "openshift4!"
+  tempo:
+    bucketName: "tempo"
+    user: "tempo"
+    password: "openshift4!"

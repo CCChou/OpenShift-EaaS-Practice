@@ -1,0 +1,19 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: openshift-workload-availability
+
+resources:
+  - namespace.yaml
+  - operator-group.yaml
+  - subscription.yaml
+  - console-plugin-job.yaml
+  - console-plugin.yaml
+
+generatorOptions:
+  disableNameSuffixHash: true
+
+configMapGenerator:
+  - name: job-node-remediation-console-plugin
+    files:
+      - console-plugin-job.sh

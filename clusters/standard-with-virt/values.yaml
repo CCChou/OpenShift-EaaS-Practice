@@ -1,0 +1,111 @@
+default:
+  app:
+    enabled: true
+    enableAutoSync: true
+    autoSyncPrune: false
+    project: cluster-config
+    labels:
+      app-source: cluster-standard
+      repo: cluster-config
+    destination:
+      namespace: openshift-gitops
+      server: https://kubernetes.default.svc
+    source:
+      repoURL: https://github.com/CCChou/OpenShift-EaaS-Practice.git
+      targetRevision: HEAD
+    syncOptions:
+      - ApplyOutOfSyncOnly=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+      - ServerSideApply=true
+      - FailOnSharedResource=true
+      - RespectIgnoreDifferences=true
+      - CreateNamespace=false
+    syncPolicyRetry:
+      limit: -1 # number of failed sync attempt retries; unlimited number of attempts if less than 0
+      backoff:
+        duration: 5s # the amount to back off. Default unit is seconds, but could also be a duration (e.g. "2m", "1h")
+        factor: 2 # a factor to multiply the base duration after each failed retry
+        maxDuration: 10m # the maximum amount of time allowed for the backoff strategy
+
+applications:
+  minio-buckets:
+    annotations:
+      argocd.argoproj.io/compare-options: IgnoreExtraneous
+      argocd.argoproj.io/sync-wave: "10"
+    destination:
+      namespace: default
+    source:
+      path: clusters/standard-with-virt/overlays/minio-buckets
+
+  loki-configuration:
+    annotations:
+      argocd.argoproj.io/compare-options: IgnoreExtraneous
+      argocd.argoproj.io/sync-wave: "15"
+    destination:
+      namespace: openshift-logging
+    source:
+      path: clusters/standard-with-virt/overlays/loki-configuration
+
+  cluster-observability-configuration:
+    annotations:
+      argocd.argoproj.io/compare-options: IgnoreExtraneous
+      argocd.argoproj.io/sync-wave: "20"
+    destination:
+      namespace: openshift-logging
+    source:
+      path: clusters/standard-with-virt/overlays/cluster-observability-configuration
+
+  openshift-logging-configuration:
+    annotations:
+      argocd.argoproj.io/compare-options: IgnoreExtraneous
+      argocd.argoproj.io/sync-wave: "20"
+    destination:
+      namespace: openshift-logging
+    source:
+      path: clusters/standard-with-virt/overlays/openshift-logging-configuration
+
+  tempo-configuration:
+    annotations:
+      argocd.argoproj.io/compare-options: IgnoreExtraneous
+      argocd.argoproj.io/sync-wave: "15"
+    destination:
+      namespace: openshift-tempo-operator
+    source:
+      path: clusters/standard-with-virt/overlays/tempo-configuration
+
+  opentelemetry-configuration:
+    annotations:
+      argocd.argoproj.io/compare-options: IgnoreExtraneous
+      argocd.argoproj.io/sync-wave: "20"
+    destination:
+      namespace: openshift-opentelemetry-operator
+    source:
+      path: clusters/standard-with-virt/overlays/opentelemetry-configuration
+
+  virtualization-configuration:
+    annotations:
+      argocd.argoproj.io/compare-options: IgnoreExtraneous
+      argocd.argoproj.io/sync-wave: "15"
+    destination:
+      namespace: openshift-cnv
+    source:
+      path: clusters/standard-with-virt/overlays/virtualization-configuration
+
+  nmstate-configuration:
+    annotations:
+      argocd.argoproj.io/compare-options: IgnoreExtraneous
+      argocd.argoproj.io/sync-wave: "15"
+    destination:
+      namespace: openshift-nmstate
+    source:
+      path: clusters/standard-with-virt/overlays/nmstate-configuration
+
+  mtv-configuration:
+    annotations:
+      argocd.argoproj.io/compare-options: IgnoreExtraneous
+      argocd.argoproj.io/sync-wave: "15"
+    destination:
+      namespace: openshift-mtv
+    source:
+      path: clusters/standard-with-virt/overlays/mtv-configuration

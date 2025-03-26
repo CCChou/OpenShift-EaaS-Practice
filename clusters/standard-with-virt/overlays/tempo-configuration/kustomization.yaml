@@ -1,0 +1,17 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - ../../../../components/tempo-configuration/
+
+generatorOptions:
+  disableNameSuffixHash: true
+
+secretGenerator:
+  - name: tempo-s3
+    type: Opaque
+    literals:
+      - access_key_id=tempo
+      - access_key_secret=openshift4!
+      - bucket=tempo
+      - endpoint=http://minio-svc.minio-dev.svc:9000
