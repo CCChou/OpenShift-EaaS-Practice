@@ -4,13 +4,3 @@ kind: Kustomization
 
 resources:
   - kubevirt-hyperconverged.yaml
-  - console-plugin-job.yaml
-  - console-plugin.yaml
-
-generatorOptions:
-  disableNameSuffixHash: true
-
-configMapGenerator:
-  - name: job-kubevirt-plugin
-    files:
-      - console-plugin-job.sh

@@ -4,13 +4,3 @@ kind: Kustomization
 
 resources:
   - forklift-controller.yaml
-  - console-plugin-job.yaml
-  - console-plugin.yaml
-
-generatorOptions:
-  disableNameSuffixHash: true
-
-configMapGenerator:
-  - name: job-forklift-console-plugin
-    files:
-      - console-plugin-job.sh
