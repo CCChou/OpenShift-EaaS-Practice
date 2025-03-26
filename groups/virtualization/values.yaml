@@ -36,7 +36,7 @@ applications:
     destination:
       namespace: openshift-cnv
     source:
-      path: groups//overlays/virtualization-operator
+      path: groups/overlays/virtualization-operator
 
   node-remediation-operator:
     annotations:
