@@ -13,4 +13,4 @@ patches:
       group: operators.coreos.com
       kind: Subscription
       name: cluster-observability-operator
-      namespace: openshift-operators
+      namespace: openshift-cluster-observability-operator
