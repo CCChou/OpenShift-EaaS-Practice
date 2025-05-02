@@ -31,7 +31,7 @@ echo "openshift-gitops is ready"
 
 oc apply -f .bootstrap/cluster-rolebinding.yaml
 
-envsubst < .bootstrap/argocd.yaml | oc apply -f -
+envsubst < .bootstrap/argocd_hub.yaml | oc apply -f -
 echo -n "Waiting for argocd server ready in openshift-gitops namespace"
 while [ "Available" != "$(oc get argocd openshift-gitops -n openshift-gitops -ojsonpath='{.status.phase}')" ]; do
     echo -n '.'

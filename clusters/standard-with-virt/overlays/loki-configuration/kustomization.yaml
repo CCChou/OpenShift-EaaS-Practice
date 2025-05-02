@@ -16,3 +16,11 @@ secretGenerator:
       - bucketnames=loki
       - endpoint=http://minio-svc.minio-dev.svc:9000
       - region=us-east-1
+
+patches:
+  - patch: |-
+      - op: replace
+        path: /spec/storageClassName
+        value: "gp3-csi"
+    target:
+      kind: LokiStack
