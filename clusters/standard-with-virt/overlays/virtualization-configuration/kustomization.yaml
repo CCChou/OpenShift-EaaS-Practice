@@ -3,3 +3,11 @@ kind: Kustomization
 
 resources:
   - ../../../../components/virtualization-configuration/
+
+patches:
+  - patch: |-
+      - op: replace
+        path: /spec/featureGates/enableCommonBootImageImport
+        value: "false"
+    target:
+      kind: HyperConverged
