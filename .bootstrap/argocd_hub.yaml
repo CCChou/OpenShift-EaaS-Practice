@@ -246,7 +246,7 @@ spec:
           - name: INFRA_GITOPS_REPO
             value: "${gitops_repo}"
         # image: quay.io/gnunn/tools:latest
-        image: quay.io/raffaelespazzoli/raffa-envsub:latest
+        image: quay.io/rhtw/gitops-envsub:latest
         imagePullPolicy: Always
         securityContext:
           runAsNonRoot: true
