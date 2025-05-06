@@ -18,9 +18,7 @@ export pin=$4 #<your target revision>
 
 envsubst < .bootstrap/group.yaml | oc apply -f -
 
-oc apply -f .bootstrap/namespace.yaml
-
-oc apply -f .bootstrap/subscription.yaml
+oc apply -f .bootstrap/subscription-bundle.yaml
 echo -n "Waiting for openshift-gitops operators ready in openshift-gitops-operator namespace"
 
 sleep 20
