@@ -18,12 +18,14 @@ export pin=$4 #<your target revision>
 
 envsubst < .bootstrap/group.yaml | oc apply -f -
 
+oc apply -f .bootstrap/namespace.yaml
+
 oc apply -f .bootstrap/subscription.yaml
-echo -n "Waiting for openshift-gitops operators ready in openshift-operators namespace"
+echo -n "Waiting for openshift-gitops operators ready in openshift-gitops-operator namespace"
 
 sleep 20
 
-while [ "true" != "$(oc get pod -l control-plane=gitops-operator -n openshift-operators -ojsonpath='{.items[0].status.containerStatuses[0].ready}')" ]; do
+while [ "true" != "$(oc get pod -l control-plane=gitops-operator -n openshift-gitops-operator -ojsonpath='{.items[0].status.containerStatuses[0].ready}')" ]; do
     echo -n '.'
     sleep 1
 done
