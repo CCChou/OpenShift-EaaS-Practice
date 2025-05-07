@@ -6,10 +6,14 @@ metadata:
 spec:
   managementState: Managed
   size: 1x.extra-small
+  limits:
+    global:
+      retention:
+        days: 7
   storage:
     schemas:
-    - effectiveDate: "2024-10-01"
-      version: v13
+      - effectiveDate: "2024-10-01"
+        version: v13
     secret:
       name: logging-loki-s3
       type: s3
