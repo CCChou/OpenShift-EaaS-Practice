@@ -8,6 +8,6 @@ patches:
   - patch: |-
       - op: replace
         path: /spec/featureGates/enableCommonBootImageImport
-        value: "false"
+        value: false
     target:
       kind: HyperConverged

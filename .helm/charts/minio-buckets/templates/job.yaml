@@ -13,7 +13,7 @@ spec:
       serviceAccountName: minio-manage
       initContainers:
       - name: wait-for-minio
-        image: quay.io/rhtw/tools:1.2.0
+        image: quay.io/rhtw/tools:latest
         imagePullPolicy: IfNotPresent
         command: ["/bin/bash"]
         args:
@@ -27,7 +27,7 @@ spec:
           echo "Minio pod is running in minio-dev namespace"
       containers:
       - name: add-buckets-and-users
-        image: quay.io/rhtw/tools:1.2.0
+        image: quay.io/rhtw/tools:latest
         imagePullPolicy: IfNotPresent
         command: ["/bin/bash"]
         args:
