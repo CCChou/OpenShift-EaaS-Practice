@@ -55,4 +55,13 @@ echo -e "[$(date)] \e[32mINFO\e[0m：argocd server is ready"
 
 envsubst < .bootstrap/argocd_gitea_secret.yaml | oc apply -f -
 
-envsubst < .bootstrap/root-application.yaml | oc apply -f -
+if oc get application root-application -n openshift-gitops &> /dev/null; then
+  echo -e "[$(date)] \e[32mINFO\e[0m：root-application existed, delete and re-apply"
+  oc delete application root-application -n openshift-gitops --force
+
+  sleep 10
+
+  envsubst < .bootstrap/root-application.yaml | oc apply -f -
+else
+  envsubst < .bootstrap/root-application.yaml | oc apply -f -
+fi

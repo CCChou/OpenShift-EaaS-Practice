@@ -39,4 +39,13 @@ while [ "Available" != "$(oc get argocd openshift-gitops -n openshift-gitops -oj
 done
 echo "argocd server is ready"
 
-envsubst < .bootstrap/root-application.yaml | oc apply -f -
+if oc get applcation root-application -n openshift-gitops &> /dev/null; then
+  echo -e "[$(date)] \e[32mINFO\e[0m：root-application existed, delete and re-apply"
+  oc delete applcation root-application -n openshift-gitops --force
+
+  sleep 10
+
+  envsubst < .bootstrap/root-application.yaml | oc apply -f -
+else
+  envsubst < .bootstrap/root-application.yaml | oc apply -f -
+fi
